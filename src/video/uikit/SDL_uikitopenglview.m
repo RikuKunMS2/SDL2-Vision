@@ -27,6 +27,8 @@
 #import "SDL_uikitopenglview.h"
 #include "SDL_uikitwindow.h"
 
+#if !TARGET_OS_VISION
+
 @implementation SDL_uikitopenglview {
     /* The renderbuffer and framebuffer used to render to this layer. */
     GLuint viewRenderbuffer, viewFramebuffer;
@@ -376,3 +378,4 @@
 #endif /* SDL_VIDEO_DRIVER_UIKIT */
 
 /* vi: set ts=4 sw=4 expandtab: */
+#endif

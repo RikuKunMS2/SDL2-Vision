@@ -160,7 +160,9 @@ SDL_HideHomeIndicatorHintChanged(void *userdata, const char *name, const char *o
 {
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(doLoop:)];
 
-#ifdef __IPHONE_10_3
+#if TARGET_OS_VISION
+    displayLink.preferredFramesPerSecond = 90 / animationInterval;      //TODO: Get frame max frame rate on visionOS
+#elif defined(__IPHONE_10_3)
     SDL_WindowData *data = (__bridge SDL_WindowData *) window->driverdata;
 
     if ([displayLink respondsToSelector:@selector(preferredFramesPerSecond)]
@@ -190,7 +192,7 @@ SDL_HideHomeIndicatorHintChanged(void *userdata, const char *name, const char *o
     if (!UIKit_ShowingMessageBox()) {
         /* See the comment in the function definition. */
 #if defined(SDL_VIDEO_OPENGL_ES) || defined(SDL_VIDEO_OPENGL_ES2)
-        UIKit_GL_RestoreCurrentContext();
+   //     UIKit_GL_RestoreCurrentContext();
 #endif
 
         animationCallback(animationCallbackParam);
@@ -506,7 +508,11 @@ SDL_HideHomeIndicatorHintChanged(void *userdata, const char *name, const char *o
 
     CGAffineTransform t = self.view.transform;
     CGPoint offset = CGPointMake(0.0, 0.0);
-    CGRect frame = UIKit_ComputeViewFrame(window, data.uiwindow.screen);
+#if TARGET_OS_VISION
+    CGRect frame = UIKit_ComputeViewFrame(window);
+#else
+    CGRect frame = UIKit_ComputeViewFrame(window, self.view.window.screen);
+#endif
 
     if (self.keyboardHeight) {
         int rectbottom = self.textInputRect.y + self.textInputRect.h;

@@ -18,6 +18,8 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
+
+
 #include "../../SDL_internal.h"
 
 #if defined(SDL_VIDEO_DRIVER_UIKIT) && (defined(SDL_VIDEO_OPENGL_ES) || defined(SDL_VIDEO_OPENGL_ES2))
@@ -33,6 +35,8 @@
 #include "../../power/uikit/SDL_syspower.h"
 #include "SDL_loadso.h"
 #include <dlfcn.h>
+
+#if !TARGET_OS_VISION
 
 @interface SDLEAGLContext : EAGLContext
 
@@ -225,9 +229,11 @@ void UIKit_GL_RestoreCurrentContext(void)
          finished running its own code for the frame. If this isn't done, the
          app may crash or have other nasty symptoms when Dictation is used.
          */
+#if !TARGET_OS_VISION
         EAGLContext *context = (__bridge EAGLContext *) SDL_GL_GetCurrentContext();
         if (context != NULL && [EAGLContext currentContext] != context) {
             [EAGLContext setCurrentContext:context];
+#endif
         }
     }
 }
@@ -235,3 +241,4 @@ void UIKit_GL_RestoreCurrentContext(void)
 #endif /* SDL_VIDEO_DRIVER_UIKIT */
 
 /* vi: set ts=4 sw=4 expandtab: */
+#endif

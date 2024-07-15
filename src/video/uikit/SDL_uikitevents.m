@@ -59,7 +59,7 @@ static BOOL UIKit_EventPumpEnabled = YES;
         [notificationCenter addObserver:self selector:@selector(applicationWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
         [notificationCenter addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
         [notificationCenter addObserver:self selector:@selector(applicationDidReceiveMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_VISION
         [notificationCenter addObserver:self selector:@selector(applicationDidChangeStatusBarOrientation) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 #endif
     } else if (!UIKit_EventPumpEnabled && self.isObservingNotifications) {
@@ -98,7 +98,7 @@ static BOOL UIKit_EventPumpEnabled = YES;
     SDL_OnApplicationDidReceiveMemoryWarning();
 }
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_VISION
 - (void)applicationDidChangeStatusBarOrientation
 {
     SDL_OnApplicationDidChangeStatusBarOrientation();
@@ -146,9 +146,9 @@ void UIKit_PumpEvents(_THIS)
     } while(result == kCFRunLoopRunHandledSource);
 
     /* See the comment in the function definition. */
-#if defined(SDL_VIDEO_OPENGL_ES) || defined(SDL_VIDEO_OPENGL_ES2)
-    UIKit_GL_RestoreCurrentContext();
-#endif
+//#if defined(SDL_VIDEO_OPENGL_ES) || defined(SDL_VIDEO_OPENGL_ES2)
+  //  UIKit_GL_RestoreCurrentContext();
+//#endif
 }
 
 #ifdef ENABLE_GCKEYBOARD

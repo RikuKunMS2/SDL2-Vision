@@ -82,7 +82,7 @@ static SDL_VideoDevice *UIKit_CreateDevice(void)
         /* Set the function pointers */
         device->VideoInit = UIKit_VideoInit;
         device->VideoQuit = UIKit_VideoQuit;
-        device->GetDisplayModes = UIKit_GetDisplayModes;
+       // device->GetDisplayModes = UIKit_GetDisplayModes;
         device->SetDisplayMode = UIKit_SetDisplayMode;
         device->PumpEvents = UIKit_PumpEvents;
         device->SuspendScreenSaver = UIKit_SuspendScreenSaver;
@@ -114,13 +114,13 @@ static SDL_VideoDevice *UIKit_CreateDevice(void)
 
         /* OpenGL (ES) functions */
 #if defined(SDL_VIDEO_OPENGL_ES) || defined(SDL_VIDEO_OPENGL_ES2)
-        device->GL_MakeCurrent      = UIKit_GL_MakeCurrent;
-        device->GL_GetDrawableSize  = UIKit_GL_GetDrawableSize;
-        device->GL_SwapWindow       = UIKit_GL_SwapWindow;
-        device->GL_CreateContext    = UIKit_GL_CreateContext;
-        device->GL_DeleteContext    = UIKit_GL_DeleteContext;
-        device->GL_GetProcAddress   = UIKit_GL_GetProcAddress;
-        device->GL_LoadLibrary      = UIKit_GL_LoadLibrary;
+  //      device->GL_MakeCurrent      = UIKit_GL_MakeCurrent;
+     //   device->GL_GetDrawableSize  = UIKit_GL_GetDrawableSize;
+    //    device->GL_SwapWindow       = UIKit_GL_SwapWindow;
+      //  device->GL_CreateContext    = UIKit_GL_CreateContext;
+      //  device->GL_DeleteContext    = UIKit_GL_DeleteContext;
+  //      device->GL_GetProcAddress   = UIKit_GL_GetProcAddress;
+      //  device->GL_LoadLibrary      = UIKit_GL_LoadLibrary;
 #endif
         device->free = UIKit_DeleteDevice;
 
@@ -194,6 +194,11 @@ SDL_bool UIKit_IsSystemVersionAtLeast(double version)
     return [[UIDevice currentDevice].systemVersion doubleValue] >= version;
 }
 
+#if TARGET_OS_VISION
+CGRect UIKit_ComputeViewFrame(SDL_Window *window){
+    return CGRectMake(window->x, window->y, window->w, window->h);
+}
+#else
 CGRect UIKit_ComputeViewFrame(SDL_Window *window, UIScreen *screen)
 {
     SDL_WindowData *data = (__bridge SDL_WindowData *) window->driverdata;
@@ -206,7 +211,7 @@ CGRect UIKit_ComputeViewFrame(SDL_Window *window, UIScreen *screen)
         frame = data.uiwindow.bounds;
     }
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_VISION
     /* iOS 10 seems to have a bug where, in certain conditions, putting the
      * device to sleep with the a landscape-only app open, re-orienting the
      * device to portrait, and turning it back on will result in the screen
@@ -231,6 +236,7 @@ CGRect UIKit_ComputeViewFrame(SDL_Window *window, UIScreen *screen)
 
     return frame;
 }
+#endif
 
 void UIKit_ForceUpdateHomeIndicator(void)
 {

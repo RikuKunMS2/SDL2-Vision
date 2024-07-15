@@ -38,7 +38,7 @@
 #import "SDL_uikitappdelegate.h"
 
 #import "SDL_uikitview.h"
-#import "SDL_uikitopenglview.h"
+//#import "SDL_uikitopenglview.h"
 
 #include <Foundation/Foundation.h>
 
@@ -69,6 +69,7 @@
 
 - (void)layoutSubviews
 {
+#if !TARGET_OS_VISION
     /* Workaround to fix window orientation issues in iOS 8. */
     /* As of July 1 2019, I haven't been able to reproduce any orientation
      * issues with this disabled on iOS 12. The issue this is meant to fix might
@@ -78,6 +79,7 @@
     if (!UIKit_IsSystemVersionAtLeast(9.0)) {
         self.frame = self.screen.bounds;
     }
+#endif
     [super layoutSubviews];
 }
 
@@ -90,7 +92,11 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
     SDL_DisplayData *displaydata = (__bridge SDL_DisplayData *) display->driverdata;
     SDL_uikitview *view;
 
+#if TARGET_OS_VISION
+    CGRect frame = UIKit_ComputeViewFrame(window);
+#else
     CGRect frame = UIKit_ComputeViewFrame(window, displaydata.uiscreen);
+#endif
     int width  = (int) frame.size.width;
     int height = (int) frame.size.height;
 
@@ -106,13 +112,15 @@ static int SetupWindowData(_THIS, SDL_Window *window, UIWindow *uiwindow, SDL_bo
     /* only one window on iOS, always shown */
     window->flags &= ~SDL_WINDOW_HIDDEN;
 
+#if !TARGET_OS_VISION
     if (displaydata.uiscreen != [UIScreen mainScreen]) {
-        window->flags &= ~SDL_WINDOW_RESIZABLE;  /* window is NEVER resizable */
-        window->flags &= ~SDL_WINDOW_INPUT_FOCUS;  /* never has input focus */
-        window->flags |= SDL_WINDOW_BORDERLESS;  /* never has a status bar. */
+        window->flags &= ~SDL_WINDOW_RESIZABLE;   /* window is NEVER resizable */
+        window->flags &= ~SDL_WINDOW_INPUT_FOCUS; /* never has input focus */
+        window->flags |= SDL_WINDOW_BORDERLESS;   /* never has a status bar. */
     }
+#endif
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_VISION
     if (displaydata.uiscreen == [UIScreen mainScreen]) {
         NSUInteger orients = UIKit_GetSupportedOrientations(window);
         BOOL supportsLandscape = (orients & UIInterfaceOrientationMaskLandscape) != 0;
@@ -166,7 +174,7 @@ int UIKit_CreateWindow(_THIS, SDL_Window *window)
         /* If monitor has a resolution of 0x0 (hasn't been explicitly set by the
          * user, so it's in standby), try to force the display to a resolution
          * that most closely matches the desired window size. */
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_VISION
         const CGSize origsize = data.uiscreen.currentMode.size;
         if ((origsize.width == 0.0f) && (origsize.height == 0.0f)) {
             if (display->num_display_modes == 0) {
@@ -204,13 +212,18 @@ int UIKit_CreateWindow(_THIS, SDL_Window *window)
 
         /* ignore the size user requested, and make a fullscreen window */
         /* !!! FIXME: can we have a smaller view? */
+#if TARGET_OS_VISION
+        UIWindow *uiwindow = [[SDL_uikitwindow alloc] initWithFrame:CGRectMake(window->x, window->y, window->w, window->h)];
+#else
         UIWindow *uiwindow = [[SDL_uikitwindow alloc] initWithFrame:data.uiscreen.bounds];
+#endif
+#if !TARGET_OS_VISION
 
         /* put the window on an external display if appropriate. */
         if (data.uiscreen != [UIScreen mainScreen]) {
             [uiwindow setScreen:data.uiscreen];
         }
-
+#endif
         if (SetupWindowData(_this, window, uiwindow, SDL_TRUE) < 0) {
             return -1;
         }
@@ -236,7 +249,10 @@ void UIKit_ShowWindow(_THIS, SDL_Window * window)
         /* Make this window the current mouse focus for touch input */
         SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
         SDL_DisplayData *displaydata = (__bridge SDL_DisplayData *) display->driverdata;
-        if (displaydata.uiscreen == [UIScreen mainScreen]) {
+#if !TARGET_OS_VISION
+        if (displaydata.uiscreen == [UIScreen mainScreen])
+#endif
+ {
             SDL_SetMouseFocus(window);
             SDL_SetKeyboardFocus(window);
         }
@@ -265,7 +281,7 @@ static void UIKit_UpdateWindowBorder(_THIS, SDL_Window * window)
     SDL_WindowData *data = (__bridge SDL_WindowData *) window->driverdata;
     SDL_uikitviewcontroller *viewcontroller = data.viewcontroller;
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_VISION
     if (data.uiwindow.screen == [UIScreen mainScreen]) {
         if (window->flags & (SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS)) {
             [UIApplication sharedApplication].statusBarHidden = YES;
@@ -360,10 +376,12 @@ void UIKit_GetWindowSizeInPixels(_THIS, SDL_Window * window, int *w, int *h)
     UIView *view = windata.viewcontroller.view;
     CGSize size = view.bounds.size;
     CGFloat scale = 1.0;
+#if !TARGET_OS_VISION
 
     if (window->flags & SDL_WINDOW_ALLOW_HIGHDPI) {
         scale = windata.uiwindow.screen.nativeScale;
     }
+#endif
 
     /* Integer truncation of fractional values matches SDL_uikitmetalview and
      * SDL_uikitopenglview. */
@@ -384,7 +402,7 @@ SDL_bool UIKit_GetWindowWMInfo(_THIS, SDL_Window * window, SDL_SysWMinfo * info)
 
             /* These struct members were added in SDL 2.0.4. */
             if (versionnum >= SDL_VERSIONNUM(2,0,4)) {
-#if defined(SDL_VIDEO_OPENGL_ES) || defined(SDL_VIDEO_OPENGL_ES2)
+#if !TARGET_OS_VISION
                 if ([data.viewcontroller.view isKindOfClass:[SDL_uikitopenglview class]]) {
                     SDL_uikitopenglview *glview = (SDL_uikitopenglview *)data.viewcontroller.view;
                     info->info.uikit.framebuffer = glview.drawableFramebuffer;
@@ -399,7 +417,6 @@ SDL_bool UIKit_GetWindowWMInfo(_THIS, SDL_Window * window, SDL_SysWMinfo * info)
                     info->info.uikit.resolveFramebuffer = 0;
                 }
             }
-
             return SDL_TRUE;
         } else {
             SDL_SetError("Application not compiled with SDL %d",

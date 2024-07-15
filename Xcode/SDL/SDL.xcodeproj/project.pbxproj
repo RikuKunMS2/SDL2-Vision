@@ -2798,37 +2798,31 @@
 		A7D8BA3E23E2514400DCD162 /* SDL_render_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90123E2514000DCD162 /* SDL_render_gles.c */; };
 		A7D8BA3F23E2514400DCD162 /* SDL_render_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90123E2514000DCD162 /* SDL_render_gles.c */; };
 		A7D8BA4023E2514400DCD162 /* SDL_render_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90123E2514000DCD162 /* SDL_render_gles.c */; };
-		A7D8BA4123E2514400DCD162 /* SDL_render_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90123E2514000DCD162 /* SDL_render_gles.c */; };
 		A7D8BA4223E2514400DCD162 /* SDL_render_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90123E2514000DCD162 /* SDL_render_gles.c */; };
 		A7D8BA4323E2514400DCD162 /* SDL_glesfuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90223E2514000DCD162 /* SDL_glesfuncs.h */; };
 		A7D8BA4423E2514400DCD162 /* SDL_glesfuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90223E2514000DCD162 /* SDL_glesfuncs.h */; };
 		A7D8BA4523E2514400DCD162 /* SDL_glesfuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90223E2514000DCD162 /* SDL_glesfuncs.h */; };
 		A7D8BA4623E2514400DCD162 /* SDL_glesfuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90223E2514000DCD162 /* SDL_glesfuncs.h */; };
-		A7D8BA4723E2514400DCD162 /* SDL_glesfuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90223E2514000DCD162 /* SDL_glesfuncs.h */; };
 		A7D8BA4823E2514400DCD162 /* SDL_glesfuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90223E2514000DCD162 /* SDL_glesfuncs.h */; };
 		A7D8BA4923E2514400DCD162 /* SDL_render_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90423E2514000DCD162 /* SDL_render_gles2.c */; };
 		A7D8BA4A23E2514400DCD162 /* SDL_render_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90423E2514000DCD162 /* SDL_render_gles2.c */; };
 		A7D8BA4B23E2514400DCD162 /* SDL_render_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90423E2514000DCD162 /* SDL_render_gles2.c */; };
 		A7D8BA4C23E2514400DCD162 /* SDL_render_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90423E2514000DCD162 /* SDL_render_gles2.c */; };
-		A7D8BA4D23E2514400DCD162 /* SDL_render_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90423E2514000DCD162 /* SDL_render_gles2.c */; };
 		A7D8BA4E23E2514400DCD162 /* SDL_render_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90423E2514000DCD162 /* SDL_render_gles2.c */; };
 		A7D8BA4F23E2514400DCD162 /* SDL_shaders_gles2.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90523E2514000DCD162 /* SDL_shaders_gles2.h */; };
 		A7D8BA5023E2514400DCD162 /* SDL_shaders_gles2.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90523E2514000DCD162 /* SDL_shaders_gles2.h */; };
 		A7D8BA5123E2514400DCD162 /* SDL_shaders_gles2.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90523E2514000DCD162 /* SDL_shaders_gles2.h */; };
 		A7D8BA5223E2514400DCD162 /* SDL_shaders_gles2.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90523E2514000DCD162 /* SDL_shaders_gles2.h */; };
-		A7D8BA5323E2514400DCD162 /* SDL_shaders_gles2.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90523E2514000DCD162 /* SDL_shaders_gles2.h */; };
 		A7D8BA5423E2514400DCD162 /* SDL_shaders_gles2.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90523E2514000DCD162 /* SDL_shaders_gles2.h */; };
 		A7D8BA5523E2514400DCD162 /* SDL_gles2funcs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90623E2514000DCD162 /* SDL_gles2funcs.h */; };
 		A7D8BA5623E2514400DCD162 /* SDL_gles2funcs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90623E2514000DCD162 /* SDL_gles2funcs.h */; };
 		A7D8BA5723E2514400DCD162 /* SDL_gles2funcs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90623E2514000DCD162 /* SDL_gles2funcs.h */; };
 		A7D8BA5823E2514400DCD162 /* SDL_gles2funcs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90623E2514000DCD162 /* SDL_gles2funcs.h */; };
-		A7D8BA5923E2514400DCD162 /* SDL_gles2funcs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90623E2514000DCD162 /* SDL_gles2funcs.h */; };
 		A7D8BA5A23E2514400DCD162 /* SDL_gles2funcs.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90623E2514000DCD162 /* SDL_gles2funcs.h */; };
 		A7D8BA5B23E2514400DCD162 /* SDL_shaders_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90723E2514000DCD162 /* SDL_shaders_gles2.c */; };
 		A7D8BA5C23E2514400DCD162 /* SDL_shaders_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90723E2514000DCD162 /* SDL_shaders_gles2.c */; };
 		A7D8BA5D23E2514400DCD162 /* SDL_shaders_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90723E2514000DCD162 /* SDL_shaders_gles2.c */; };
 		A7D8BA5E23E2514400DCD162 /* SDL_shaders_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90723E2514000DCD162 /* SDL_shaders_gles2.c */; };
-		A7D8BA5F23E2514400DCD162 /* SDL_shaders_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90723E2514000DCD162 /* SDL_shaders_gles2.c */; };
 		A7D8BA6023E2514400DCD162 /* SDL_shaders_gles2.c in Sources */ = {isa = PBXBuildFile; fileRef = A7D8A90723E2514000DCD162 /* SDL_shaders_gles2.c */; };
 		A7D8BA7323E2514400DCD162 /* SDL_shaders_gl.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90D23E2514000DCD162 /* SDL_shaders_gl.h */; };
 		A7D8BA7423E2514400DCD162 /* SDL_shaders_gl.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D8A90D23E2514000DCD162 /* SDL_shaders_gl.h */; };
@@ -6712,8 +6706,6 @@
 				A7D8BAC523E2514500DCD162 /* math_private.h in Headers */,
 				A7D8B27C23E2514200DCD162 /* vulkan_wayland.h in Headers */,
 				A7D8AE8623E2514100DCD162 /* SDL_cocoashape.h in Headers */,
-				A7D8BA5323E2514400DCD162 /* SDL_shaders_gles2.h in Headers */,
-				A7D8BA4723E2514400DCD162 /* SDL_glesfuncs.h in Headers */,
 				A7D8BA1123E2514400DCD162 /* SDL_blendpoint.h in Headers */,
 				A7D8AB7123E2514100DCD162 /* SDL_offscreenvideo.h in Headers */,
 				A7D8AC0123E2514100DCD162 /* SDL_nullevents_c.h in Headers */,
@@ -6785,7 +6777,6 @@
 				A7D8B27623E2514200DCD162 /* vulkan_fuchsia.h in Headers */,
 				A7D8B57323E2514300DCD162 /* usb_ids.h in Headers */,
 				F316ABAD2B5A02C3002EF551 /* yuv_rgb_lsx.h in Headers */,
-				A7D8BA5923E2514400DCD162 /* SDL_gles2funcs.h in Headers */,
 				A7D8AC4323E2514100DCD162 /* SDL_sysvideo.h in Headers */,
 				A7D8AB1423E2514100DCD162 /* SDL_dynapi_overrides.h in Headers */,
 				A7D8AEFE23E2514100DCD162 /* SDL_cocoawindow.h in Headers */,
@@ -8917,7 +8908,6 @@
 				A7D8AB2923E2514100DCD162 /* SDL_log.c in Sources */,
 				A7D8AE8C23E2514100DCD162 /* SDL_cocoaopengl.m in Sources */,
 				A7D8AB7723E2514100DCD162 /* SDL_offscreenframebuffer.c in Sources */,
-				A7D8BA4123E2514400DCD162 /* SDL_render_gles.c in Sources */,
 				F362B95F2B33EB7300D30B94 /* SDL_steam_virtual_gamepad.c in Sources */,
 				A7D8B43823E2514300DCD162 /* SDL_systhread.c in Sources */,
 				A7D8BB3723E2514500DCD162 /* SDL_windowevents.c in Sources */,
@@ -9024,7 +9014,6 @@
 				A7D8B95A23E2514400DCD162 /* SDL_getenv.c in Sources */,
 				A7D8B56723E2514300DCD162 /* SDL_hidapi_gamecube.c in Sources */,
 				A7D8B4E023E2514300DCD162 /* SDL_joystick.c in Sources */,
-				A7D8BA4D23E2514400DCD162 /* SDL_render_gles2.c in Sources */,
 				A7D8AC3123E2514100DCD162 /* SDL_surface.c in Sources */,
 				F316AB9B2B5A02C3002EF551 /* yuv_rgb_std.c in Sources */,
 				F395BF6925633B2400942BFF /* SDL_crc32.c in Sources */,
@@ -9064,7 +9053,6 @@
 				A7D8AC1323E2514100DCD162 /* SDL_video.c in Sources */,
 				F38233962738EC1600F7F527 /* hid.m in Sources */,
 				A7D8ACC723E2514100DCD162 /* SDL_uikitmetalview.m in Sources */,
-				A7D8BA5F23E2514400DCD162 /* SDL_shaders_gles2.c in Sources */,
 				A7D8B14423E2514200DCD162 /* SDL_blit_1.c in Sources */,
 				A7D8BB1923E2514500DCD162 /* SDL_mouse.c in Sources */,
 				A7D8BADD23E2514500DCD162 /* e_rem_pio2.c in Sources */,
@@ -10006,10 +9994,18 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = GLES_SILENCE_DEPRECATION;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GENERATE_MASTER_OBJECT_FILE = YES;
+				SDKROOT = xros;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				STRIPFLAGS = "";
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = all;
+				SUPPORTED_PLATFORMS = "xrsimulator xros";
+				UNEXPORTED_SYMBOLS_FILE = "";
 			};
 			name = Debug;
 		};
@@ -10020,8 +10016,13 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = GLES_SILENCE_DEPRECATION;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GENERATE_MASTER_OBJECT_FILE = YES;
+				SDKROOT = xros;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				STRIPFLAGS = "";
+				STRIP_STYLE = all;
+				SUPPORTED_PLATFORMS = "xrsimulator xros";
+				UNEXPORTED_SYMBOLS_FILE = "";
 			};
 			name = Release;
 		};

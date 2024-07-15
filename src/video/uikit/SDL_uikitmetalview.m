@@ -79,6 +79,7 @@ SDL_MetalView UIKit_Metal_CreateView(_THIS, SDL_Window * window)
     SDL_WindowData *data = (__bridge SDL_WindowData *)window->driverdata;
     CGFloat scale = 1.0;
     SDL_uikitmetalview *metalview;
+#if !TARGET_OS_VISION
 
     if (window->flags & SDL_WINDOW_ALLOW_HIGHDPI) {
         /* Set the scale to the natural scale factor of the screen - then
@@ -88,6 +89,7 @@ SDL_MetalView UIKit_Metal_CreateView(_THIS, SDL_Window * window)
          */
         scale = data.uiwindow.screen.nativeScale;
     }
+#endif
 
     metalview = [[SDL_uikitmetalview alloc] initWithFrame:data.uiwindow.bounds
                                                     scale:scale];
